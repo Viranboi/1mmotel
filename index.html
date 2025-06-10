@@ -5,8 +5,8 @@
    <!-- Meta -->
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <meta name="keywords" content="Hotel Zeitaku, Best hotel in Japan, Japanese hotel, Luxurious hotel, Zeitaku">
-   <meta name="description" content="Hotel Zeitaku is the most luxurious Hotel in Japan">
+   <meta name="keywords" content="Hotel 1MMotel, Best hotel in Japan, Japanese hotel, Luxurious hotel, 1MMotel">
+   <meta name="description" content="Hotel 1MMotel is the most luxurious Hotel in Japan">
    <meta http-equiv="X-UA compatible" content="ie=edge">
 
    <!-- External links -->
@@ -23,7 +23,7 @@
       crossorigin="anonymous"></script>
    <script src="js/lightbox.min.js"></script>
    <script src="js/script.js" async></script>
-   <title>Welcome To Zeitaku</title>
+   <title>Welcome To 1MMotel</title>
 
    <!-- Favicon --> 
    <link rel="apple-touch-icon" sizes="180x180" href="./img/favicon/apple-touch-icon.png">
@@ -33,13 +33,396 @@
    <link rel="icon" sizes="512x512" href="./img/favicon/android-chrome-512x512.png">
    <link rel="manifest" href="img/favicon/site.webmanifest">
 </head>
+<style>
+  /* Full-screen YouTube video background */
+.video-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+}
 
+.video-background iframe {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 177.77vh; /* 100vh * 16/9 to preserve aspect ratio */
+  height: 100vh;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  border: none;
+}
+
+/* Optional: dark overlay for better text visibility */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.4); /* change 0.4 to adjust darkness */
+  z-index: 0;
+}
+
+/* Ensure hero content appears above the video */
+.hero .content,
+.hero .navbar {
+  position: relative;
+  z-index: 1;
+}
+/* ──────────────────────────────────────────────────────────────────────────── */
+/* Reset minor spacing & ensure global box sizing */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ───────────────────────────────────────────────── Hero Section ─────────────── */
+
+/* Make hero content cover viewport beautifully */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Dark overlay for good contrast (optional, adjust opacity) */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+}
+
+/* Align navbar and welcome content above overlay */
+.hero .navbar,
+.hero .content {
+  position: relative;
+  z-index: 1;
+}
+
+/* Center welcome message */
+.hero .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  flex: 1;
+  gap: 1rem;
+}
+
+.hero .content h1 {
+  font-size: 3rem;
+  color: #fff;
+}
+
+.hero .content p {
+  font-size: 1.25rem;
+  color: #eee;
+}
+
+/* Call-to-action button look */
+.btn-primary {
+  background-color: #28a745;
+  border: none;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.05rem;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color .3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #218838;
+}
+
+/* ───────────────────────────────────────────────── General Layout ───────────── */
+
+/* Utility container for sections */
+.main-container,
+.section {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto 2rem;
+}
+
+/* Section headers */
+.secondary-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.secondary-header h4.text-secondary {
+  color: #6c757d;
+  font-size: 1.2rem;
+}
+
+.secondary-header h2 {
+  font-size: 2rem;
+  margin: 0.5rem 0;
+  background-color: #fff;       /* white background */
+  display: inline-block;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Paragraph styling under headers */
+.secondary-header p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Flex grid for food and rooms; nice wrapping */
+.flex-grid .row,
+.rooms .room {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+/* Columns: food, rooms, drinks */
+.flex-grid .column,
+.rooms .room > div {
+  flex: 1 1 250px;
+  background: #f8f9fa;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Image styling */
+.column img,
+.rooms .room img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Inner content wrapper */
+.list {
+  padding: 1rem;
+}
+
+/* Room and drink titles */
+.list h3 {
+  font-size: 1.3rem;
+  margin-bottom: 0.5rem;
+}
+
+/* List bullet styling */
+.list ul {
+  list-style: disc inside;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* Buttons in columns */
+.list a,
+.rooms .room a {
+  margin-top: 0.5rem;
+  background-color: #28a745;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  border-radius: 4px;
+  display: inline-block;
+  transition: background-color .3s ease;
+}
+
+.list a:hover,
+.rooms .room a:hover {
+  background-color: #218838;
+}
+
+/* "See more" link styling */
+.rooms > a {
+  display: inline-block;
+  margin: 1rem auto;
+  background-color: #28a745;
+  padding: 0.75rem 1.5rem;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  transition: background-color .3s;
+}
+
+.rooms > a:hover {
+  background-color: #218838;
+}
+
+/* ─────────────────────────────────────────────── Contact Form & Footer ───── */
+
+/* Contact form */
+.contact form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact .form-group label {
+  font-weight: 600;
+  color: #333;
+}
+
+.contact .form-group input[type=text],
+.contact .form-group input[type=email] {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.contact input[type=submit].btn-primary {
+  align-self: start;
+  background-color: #007bff;
+}
+
+.contact input[type=submit].btn-primary:hover {
+  background-color: #0069d9;
+}
+
+/* Footer */
+.footer {
+  background-color: #222;
+  color: #aaa;
+  padding: 1.5rem;
+  text-align: center;
+}
+
+.footer .socials a {
+  color: #ccc;
+  font-size: 1.5rem;
+  margin: 0 0.5rem;
+  transition: color .3s ease;
+}
+
+.footer .socials a:hover {
+  color: #fff;
+}
+
+.footer p {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* ─────────────────────────────────────────────── Responsive Breakpoints ─── */
+
+@media (max-width: 768px) {
+  .hero .content h1 {
+    font-size: 2.25rem;
+  }
+  .secondary-header h2 {
+    font-size: 1.75rem;
+  }
+  .rooms > a, .btn-primary {
+    font-size: 0.95rem;
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero .content h1 {
+    font-size: 1.8rem;
+  }
+  .flex-grid .column,
+  .rooms .room > div {
+    flex: 1 1 100%;
+  }
+}
+
+.see-more-vertical {
+  writing-mode: vertical-rl; /* Makes text go down */
+  text-orientation: upright; /* Keeps letters upright */
+  font-size: 24px;           /* Increase text size */
+  background-color: green;
+  color:blue;
+  padding: 20px 10px;
+  text-decoration: none;
+  border-radius: 5px;
+  display: inline-block;
+  background-image: url('https://cdn.create.vista.com/api/media/small/194600176/stock-photo-close-view-bottles-mugs-beer-froth-grey-background');
+  background-size: cover;
+  background-position: center;
+  font-weight: bold;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+.see-more-vertical {
+  color: #0069d9;
+  font-size: 24px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.see-more-vertical .click-icon {
+  width: 40px;
+  height: 60px;
+  margin-left: 5px;
+}
+
+/* Responsive adjustments for small screens */
+@media screen and (max-width: 600px) {
+  .see-more-vertical {
+    font-size: 16px;
+  }
+
+  .see-more-vertical .click-icon {
+    width: 20px;
+    height: 30px;
+  }
+}
+.see-more-vertical {
+  color: #0069d9;
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  gap: 5px;
+}
+
+.see-more-vertical .click-icon {
+  width: 32px;
+  height: 32px;
+}
+
+/* For smaller screens */
+@media screen and (max-width: 600px) {
+  .see-more-vertical {
+    font-size: 16px;
+  }
+
+  .see-more-vertical .click-icon {
+    width: 20px;
+    height: 20px;
+  }
+}
+
+</style>
 <body id="home">
    <header class="hero">
+      <img src="https://i.postimg.cc/G3gJ5Xg1/baf82707-1d34-4145-80aa-8f0a9fb92f14.jpg" alt="Circle 1" class="hero-circle-img img1">
+      <img src="https://i.postimg.cc/d0zDCT4p/e86321c0-ab75-4787-abde-72d359df1c2f.jpg" alt="Circle 2" class="hero-circle-img img2">
+      <img src="https://i.postimg.cc/3N63ssV6/1241ad11-b4ed-4931-9458-df320d48e904.jpg" alt="Flag" class="hero-flag-img">
+      <div class="video-background">
+         <!-- No iframe here anymore -->
+       </div>
+       
+           
       <div id="navbar" class="navbar top">
          <h1 class="logo">
             <a href="#home">
-               <span class="text-primary"><i class="fas fa-spa"></i> Zei</span>taku
+               <span class="text-primary"><i class="fas fa-spa"></i> 1M</span>Motel
             </a>
          </h1>
          <nav>
@@ -61,9 +444,9 @@
             </ul>
          </div>
       </div>
-
+      
       <div class="content">
-         <h1>Enjoy Your Stay</h1>
+         <h1>welcome to 1MMotel</h1>
          <p>We give you a legendary welcome, when you come back</p>
          <a href="about.html" class="btn btn-primary">
             <i class="fas fa-chevron-right"></i> Read More
@@ -107,20 +490,33 @@
       <div class="row">
          <div class="column">
             <div class="column-1">
-               <img src="img/home/about.jpg" alt="">
+               <img src="https://i.postimg.cc/G3gJ5Xg1/baf82707-1d34-4145-80aa-8f0a9fb92f14.jpg" alt="">
             </div>
          </div>
 
          <div class="column">
             <div class="column-2 bg-light">
-               <h4 class="text-secondary">About Us</h4>
-               <h2>A Brief History Of Zeitaku</h2>
+               <h4 class="text-secondary">welcome to</h4>
+               <h2>Our next branch</h2>
                <p>
-                  Zeitaku, founded by <span class="text-secondary"><strong>'Uzumaki Naruto'</strong></span> and the
-                  <strong>'Uchiha'</strong> clan 50 years ago. These families have been in the hospitality industry ever
-                  since. Although it has undergone quite a bit of modernization and upkeep over the years, the main
-                  attraction, namely the Hokage molded statue and gorgeous hidden leaf village tress have remained the
-                  center for it's appeal.
+                  1MMotel, branch <span class="text-secondary"><strong>'musanze'</strong></span> welcome
+                  <strong>'Home'</strong> 🌿 Welcome to 1MMotel – Experience the charm of Musanze in a whole new way at 1MMotel – the next bar Branch. Nestled in the heart of Rwanda’s adventure capital, our the next bar Branch brings you the same trusted comfort, elegance, and hospitality that 1MMotel is known for.
+
+                  Whether you're here to explore the Volcanoes National Park, enjoy a relaxing escape, or host a special event, the next bar offers:
+                  
+                  🛏️ Modern, cozy rooms designed for ultimate relaxation
+                  
+                  🍽️ Delicious meals prepared fresh in our kitchen
+                  
+                  🍹 A vibrant drinks menu in a relaxing setting
+                  
+                  💼 Professional and friendly staff ready to assist you
+                  
+                  📍 Convenient location near key attractions and transport
+                  
+                  Enjoy a peaceful and memorable stay at the the next bar Branch — where 1MMotel’s quality meets Musanze’s beauty.
+                  
+                  
                </p>
                <a href="about.html" class="btn btn-primary"><i class="fas fa-chevron-right"></i> Learn More</a>
             </div>
@@ -144,7 +540,7 @@
             ">
                <img src="img/food/food-1.jpg" alt="">
             </a>
-
+            
             <a href="img/food/food-2.jpg" data-lightbox="food" data-title="Curry Rice
             The curry was introduced to Japan in late 1800 by the British and originally it was Western style stews mixed with curry powder. The Japanese adapted curry to their own version, Curry
             Rice (Kare Raisu, カレーライス) soon after. By 1950s the curry roux in block form was sold by
@@ -168,7 +564,10 @@
             triumphs of Japanese cooking-a fried food that is light and fresh-tasting rather than heavy
             and greasy.">
                <img src="img/food/food-4.jpg" alt="">
+            
             </a>
+           
+
          </div>
 
          <div class="column">
@@ -206,54 +605,184 @@
          </div>
       </div>
    </section>
+   <section id="contact" class="contact flex-columns">
+      <div class="row">
+         <div class="column">
+            <div class="column-1">
+               <img src="https://i.postimg.cc/3N63ssV6/1241ad11-b4ed-4931-9458-df320d48e904.jpg" alt="">
+            </div>
+         </div>
 
+         <div class="column">
+            <div class="column-2 bg-light">
+               <h2>we have also Guest House</h2>
+               <p><strong>Phone:</strong> +250788436415</p>
+               <p><strong>Email:</strong> 1MMotel@gmail.com</p>
+               <p><strong>Address:</strong> KN 123 St, Musanze, Rwanda</p>
+               <p><strong>Follow us:</strong></p>
+               <ul>
+                  <li><a href="https://facebook.com" target="_blank">Facebook</a></li>
+                  <li><a href="https://twitter.com" target="_blank">Twitter</a></li>
+                  <li><a href="https://instagram.com" target="_blank">Instagram</a></li>
+               </ul>
+               <p>Contact us on +250788436415 <i class="fas fa-cat"></i></p>
+            </div>
+         </div>
+         
+   </section>
    <!-- Rooms -->
    <section id="rooms" class="rooms">
       <header class="secondary-header">
          <h4 class="text-secondary">Book your accomodations now!</h4>
-         <h2>Rooms</h2>
+         <h2>our services</h2>
          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus aperiam, asperiores distinctio
             deserun.</p>
       </header>
       <div class="room">
-         <div>
+         <div style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/d/d4/Muhabura_volcano_located_at_Musanze_District.jpg);">
             <img src="img/rooms/room-1.jpg" alt="">
             <div class="list">
                <h3>Standard Room</h3>
                <ul>
                   <li>Standard condition</li>
                   <li>Single Size</li>
-                  <li>Room service</li>
+                  <li>5,000Rwf-10,000Rwf</li>
                </ul>
-               <a href="#" class="btn btn-outline">Book Now</a>
+               <a href="order.html" style="background-color: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Book Now</a>
+
             </div>
          </div>
 
-         <div>
-            <img src="img/rooms/room-2.jpg" alt="">
+         <div style="background-image:url(https://cdn.pixabay.com/photo/2016/01/30/20/12/billiards-1170524_640.jpg);">
+            <img src="https://img.freepik.com/premium-photo/sports-game-billiards-green-clothmulti-colored-billiard-balls-form-triangle-with-numbersa-cue-ball-triangle-pool-table-billiard-balls-closeuptoned_334782-9876.jpg?semt=ais_hybrid&w=740" alt="">
             <div class="list">
-               <h3>Premium Room</h3>
+               <h3 style="color: #0069d9;">Billiards game</h3>
                <ul>
-                  <li>Premium Room</li>
+                  <li>Premium game</li>
                   <li>Double Size</li>
-                  <li>Room service</li>
+                  <li>low price</li>
                </ul>
-               <a href="#" class="btn btn-outline">Book Now</a>
+               <a href="order.html" style="background-color: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Book Now</a>
+
+            </div>
+         </div>
+
+         <div style="background-image: url(https://render.fineartamerica.com/images/rendered/medium/print/5.5/8/break/images/artworkimages/medium/2/white-wine-bottle-with-wine-glass-domin-domin.jpg);">
+            <img src="https://storyteller.travel/wp-content/uploads/2021/04/salvadoran-food-768x549.jpg" alt="">
+            <div class="list">
+               <h3>Special Food</h3>
+               <ul>
+                  <li>small price</li>
+                  <li>cooked fast</li>
+                  <li>special chief</li>
+               </ul>
+               <a href="order.html" style="background-color: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Book Now</a>
+
+            </div>
+         </div>
+         <a href="food.html" style="background-color: green; color:whitesmoke; padding: 10px 23px; text-decoration: none; border-radius: 5px; display: inline-block; background-image: url(https://static.vecteezy.com/system/resources/thumbnails/043/269/936/small/cooked-hamburger-meat-on-a-dark-background-top-view-photo.jpg);">See more Food</a>
+         <a href="food.html" class="btn btn-book">see more food </a>
+      </div>
+      <header class="secondary-header">
+         <h4 class="text-secondary">Book your accomodations now!</h4>
+         <h2 style="background-image: url(https://www.wine-searcher.com/images/product-category/red-wine.jpg?width=227&height=300&fit=crop);">Drinks</h2>
+
+         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus aperiam, asperiores distinctio
+            deserun.</p>
+      </header>
+      <div class="room">
+         <div>
+            <img src="https://i.pinimg.com/originals/ad/ff/01/adff01970ae59cb481c34fc642cb296c.jpg" alt="">
+            <div class="list">
+               <h3 style="color: blue;">Heinken</h3>
+               <ul>
+                  <li>Standard condition</li>
+                  <li>cold&hot</li>
+                  <li>small price</li>
+               </ul>
+               <a href="order.html" style="background-color: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Book Now</a>
+
             </div>
          </div>
 
          <div>
-            <img src="img/rooms/room-3.jpg" alt="">
+            <img src="https://tuma250.com/wp-content/uploads/2021/06/Mutzig-55cl.webp" alt="">
             <div class="list">
-               <h3>Deluxe Room</h3>
+               <h3 style="color: blue;">Miitsiig</h3>
+               <ul>
+                  <li>Standard condition</li>
+                  <li>Cold&hot</li>
+                  <li>small price</li>
+               </ul>
+               <a href="order.html" style="background-color: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Book Now</a>
+
+            </div>
+         </div>
+
+         <div>
+            <img src="https://www.coca-cola.com/content/dam/onexp/de/de/fanta/produkte/fanta_zs_mandarine_pet.png" alt="">
+            <div class="list">
+               <h3 style="color: blue;">Fanta</h3>
                <ul>
                   <li>Deluxe Room</li>
                   <li>Deluxe Size</li>
                   <li>Room service</li>
                </ul>
-               <a href="#" class="btn btn-outline">Book Now</a>
+               <a href="order.html" style="background-color: green; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Book Now</a>
+
             </div>
          </div>
+         <a href="drinks.html" class="drinks-button">See more Drinks</a>
+         <a href="drinks.html" class="btn btn-book">see more </a>
+
+<style>
+.drinks-button {
+  display: inline-block;
+  text-decoration: none;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 8px;
+  background-color: rgba(0, 128, 0, 0.8); /* Green with slight transparency */
+  background-image: url('https://media.istockphoto.com/id/1371317396/photo/assortment-of-hard-strong-alcoholic-drinks-and-spirits.jpg?s=612x612&w=0&k=20&c=nH5UFeng_BwbrXrnULOSNQxF2vCKEk8V42AKOST4shY=');
+  background-size: cover;
+  background-position: center;
+  background-blend-mode: overlay;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  max-width: 90vw;
+}
+
+/* Hover effect */
+.drinks-button:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}
+
+/* Responsive design */
+@media (max-width: 600px) {
+  .drinks-button {
+    font-size: 0.95rem;
+    padding: 10px 20px;
+    border-radius: 6px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .drinks-button {
+    font-size: 1.2rem;
+    padding: 14px 28px;
+    border-radius: 10px;
+  }
+}
+</style>
+
+          
+          
+
+
       </div>
    </section>
 
@@ -262,40 +791,33 @@
       <div class="row">
          <div class="column">
             <div class="column-1">
-               <img src="img/home/contact.jpg" alt="">
+               <img src="https://i.postimg.cc/d0zDCT4p/e86321c0-ab75-4787-abde-72d359df1c2f.jpg" alt="">
             </div>
          </div>
 
          <div class="column">
-            <div class="column-2 bg-light">
-               <h2>Contact</h2>
-               <form action="thankyou.html" data-netlify="true">
-                  <div class="form-group">
-                     <label for="name">Enter Name</label>
-                     <input type="text" id="name" name="name" placeholder="Enter name" required>
-                  </div>
-                  
-                  <div class="form-group">
-                     <label for="email">Enter Email</label>
-                     <input type="email" id="name" name="email" placeholder="Enter email">
-                  </div>
-
-                  <div class="form-group">
-                     <label for="text">Say something nice to us</label>
-                     <input type="text" id="text" name="text" placeholder="Send us a message" required>
-                  </div>
-                  <p>Submit this form for a TOP SECRET PAGE!!! <i class="fas fa-cat"></i></p>
-                  
-                  <div class="form-group">
-                     <div data-netlify-recaptcha="true"></div>
-                  </div>
-
-                  <input type="submit" class="btn btn-primary" value="Submit">
-               </form>
+            <div class="column-2 bg-light" style="padding: 20px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+               <h2 style="margin-bottom: 16px; font-size: 28px; color: #333;">About 1MMotel Restaurant</h2>
+               <p style="font-size: 16px; line-height: 1.6; color: #555;">
+                  Welcome to <strong>1MMotel Restaurant</strong>, your ultimate destination for comfort, flavor, and unforgettable experiences. 
+                  Located in the heart of Rwanda, we offer a unique blend of cozy accommodations and mouth-watering cuisine, all under one roof.
+               </p>
+               <p style="font-size: 16px; line-height: 1.6; color: #555;">
+                  At 1MMotel, we pride ourselves on our warm hospitality, clean and stylish rooms, and a diverse menu that caters to both local and international tastes. 
+                  Whether you're staying overnight, stopping in for a delicious meal, or relaxing with a drink, we ensure every guest feels like family.
+               </p>
+               <p style="font-size: 16px; line-height: 1.6; color: #555;">
+                  Come and enjoy our modern amenities, friendly service, and peaceful atmosphere. 1MMotel Restaurant is more than just a place to eat or sleep — it's a place to feel at home.
+               </p>
             </div>
          </div>
-      </div>
+           
    </section>
+   <!-- WhatsApp Floating Icon -->
+<a href="https://wa.me/250788436415" class="whatsapp-float" target="_blank" aria-label="Chat with us on WhatsApp">
+   <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp--v1.png" alt="WhatsApp Icon" />
+ </a>
+ 
 </body>
 
 <footer id="footer" class="footer bg-dark">
@@ -306,7 +828,7 @@
             class="fab fa-youtube"></i></a>
       <a href="https://www.linkedin.com/in/victor-eke-2722711a4/" rel="noreferrer noopener"><i class="fab fa-linkedin"></i></a>
    </div>
-   <p>Copyright &copy; 2020 &nbsp; | &nbsp; <a href="thankyou.html"><i class="fas fa-spa text-primary"></i></a> Zeitaku
+   <p>nexgen coders :+250791820286,+250798626289 &copy; 2025 &nbsp; | &nbsp; <a href="thankyou.html"><i class="fas fa-spa text-primary"></i></a> 1MMotel
    </p>
 </footer>
 </html>
