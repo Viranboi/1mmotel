@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CinemaHub - Your Ultimate Movie Destination</title>
+    <meta name="description" content="Discover the best movies, watch trailers, and explore our vast collection of films">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-film"></i>
+                <span>CinemaHub</span>
+            </div>
+            
+            <div class="nav-menu">
+                <a href="#home" class="nav-link active">Home</a>
+                <a href="#featured" class="nav-link">Featured</a>
+                <a href="#movies" class="nav-link">Movies</a>
+                <a href="#genres" class="nav-link">Genres</a>
+                <a href="#about" class="nav-link">About</a>
+            </div>
+            
+            <div class="nav-actions">
+                <div class="search-container">
+                    <input type="text" id="searchInput" placeholder="Search movies..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+                <a href="/admin" class="admin-btn">
+                    <i class="fas fa-cog"></i>
+                    Admin
+                </a>
+            </div>
+            
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-background">
+            <div class="hero-overlay"></div>
+        </div>
+        <div class="hero-content">
+            <h1 class="hero-title">Welcome to CinemaHub</h1>
+            <p class="hero-subtitle">Discover amazing movies, watch trailers, and explore our curated collection</p>
+            <div class="hero-buttons">
+                <button class="btn btn-primary" onclick="scrollToSection('featured')">
+                    <i class="fas fa-play"></i>
+                    Explore Movies
+                </button>
+                <button class="btn btn-secondary" onclick="scrollToSection('about')">
+                    <i class="fas fa-info-circle"></i>
+                    Learn More
+                </button>
+            </div>
+        </div>
+        <div class="hero-stats">
+            <div class="stat">
+                <span class="stat-number" id="totalMovies">0</span>
+                <span class="stat-label">Movies</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number" id="totalGenres">0</span>
+                <span class="stat-label">Genres</span>
+            </div>
+            <div class="stat">
+                <span class="stat-number">HD</span>
+                <span class="stat-label">Quality</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Movies -->
+    <section id="featured" class="featured">
+        <div class="container">
+            <div class="section-header">
+                <h2>Featured Movies</h2>
+                <p>Hand-picked movies that you shouldn't miss</p>
+            </div>
+            <div class="featured-slider">
+                <div class="featured-movies" id="featuredMovies">
+                    <!-- Featured movies will be loaded here -->
+                </div>
+                <div class="slider-controls">
+                    <button class="slider-btn prev" onclick="slideFeatured(-1)">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button class="slider-btn next" onclick="slideFeatured(1)">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Grid -->
+    <section id="movies" class="movies-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>All Movies</h2>
+                <div class="filters">
+                    <select id="genreFilter" class="filter-select">
+                        <option value="">All Genres</option>
+                    </select>
+                    <select id="yearFilter" class="filter-select">
+                        <option value="">All Years</option>
+                    </select>
+                    <select id="sortFilter" class="filter-select">
+                        <option value="rating">Sort by Rating</option>
+                        <option value="year">Sort by Year</option>
+                        <option value="title">Sort by Title</option>
+                    </select>
+                </div>
+            </div>
+            <div class="movies-grid" id="moviesGrid">
+                <!-- Movies will be loaded here -->
+            </div>
+            <div class="load-more">
+                <button class="btn btn-outline" id="loadMoreBtn" onclick="loadMoreMovies()">
+                    Load More Movies
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Genres Section -->
+    <section id="genres" class="genres-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Browse by Genre</h2>
+                <p>Find movies by your favorite genres</p>
+            </div>
+            <div class="genres-grid" id="genresGrid">
+                <!-- Genres will be loaded here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2>About CinemaHub</h2>
+                    <p>CinemaHub is your ultimate destination for discovering amazing movies. We curate the best films from various genres and provide detailed information, trailers, and reviews to help you find your next favorite movie.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-film"></i>
+                            <div>
+                                <h3>Vast Collection</h3>
+                                <p>Thousands of movies from different genres and eras</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-star"></i>
+                            <div>
+                                <h3>Quality Ratings</h3>
+                                <p>Curated ratings and reviews from movie enthusiasts</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-play-circle"></i>
+                            <div>
+                                <h3>Watch Trailers</h3>
+                                <p>Preview movies with high-quality trailers</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="image-placeholder">
+                        <i class="fas fa-video"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <i class="fas fa-film"></i>
+                        <span>CinemaHub</span>
+                    </div>
+                    <p>Your ultimate movie destination for discovering and exploring amazing films.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#featured">Featured</a></li>
+                        <li><a href="#movies">Movies</a></li>
+                        <li><a href="#genres">Genres</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Genres</h3>
+                    <ul>
+                        <li><a href="#" onclick="filterByGenre('Action')">Action</a></li>
+                        <li><a href="#" onclick="filterByGenre('Drama')">Drama</a></li>
+                        <li><a href="#" onclick="filterByGenre('Comedy')">Comedy</a></li>
+                        <li><a href="#" onclick="filterByGenre('Sci-Fi')">Sci-Fi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact</h3>
+                    <p><i class="fas fa-envelope"></i> info@cinemahub.com</p>
+                    <p><i class="fas fa-phone"></i> +1 (555) 123-4567</p>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Movie St, Cinema City</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 CinemaHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Movie Modal -->
+    <div id="movieModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-body" id="modalBody">
+                <!-- Movie details will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div id="loading" class="loading">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/script.js"></script>
+</body>
+</html>

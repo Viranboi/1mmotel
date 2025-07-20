@@ -1,0 +1,28 @@
+<svg width="300" height="450" xmlns="http://www.w3.org/2000/svg">
+    <rect width="300" height="450" fill="#2c3e50"/>
+    <rect x="10" y="10" width="280" height="430" fill="none" stroke="#fff" stroke-width="2" opacity="0.3"/>
+    
+    <!-- Film icon -->
+    <g transform="translate(150, 180)">
+        <circle cx="0" cy="0" r="40" fill="#fff" opacity="0.2"/>
+        <path d="M-20,-15 L20,-15 L20,15 L-20,15 Z" fill="#fff" opacity="0.6"/>
+        <circle cx="-25" cy="-20" r="5" fill="#fff" opacity="0.4"/>
+        <circle cx="25" cy="-20" r="5" fill="#fff" opacity="0.4"/>
+        <circle cx="-25" cy="20" r="5" fill="#fff" opacity="0.4"/>
+        <circle cx="25" cy="20" r="5" fill="#fff" opacity="0.4"/>
+    </g>
+    
+    <!-- Movie title -->
+    <text x="150" y="280" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="24" font-weight="bold">
+        <tspan x="150" dy="0">The Shawshank</tspan><tspan x="150" dy="30">Redemption</tspan>
+    </text>
+    
+    <!-- Movie poster label -->
+    <text x="150" y="380" text-anchor="middle" fill="#fff" font-family="Arial, sans-serif" font-size="14" opacity="0.7">
+        MOVIE POSTER
+    </text>
+    
+    <!-- Decorative elements -->
+    <rect x="20" y="400" width="260" height="2" fill="#fff" opacity="0.3"/>
+    <rect x="50" y="410" width="200" height="1" fill="#fff" opacity="0.2"/>
+</svg>
