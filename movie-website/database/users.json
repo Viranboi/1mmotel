@@ -1,0 +1,10 @@
+[
+  {
+    "id": "8f4104cd-50c7-4801-bd70-2d8550458422",
+    "username": "admin",
+    "email": "admin@moviesite.com",
+    "password": "$2a$10$.27/xheTmsUf73N6AkaQCuzXxg9LOr95kvUce.eKfM3SrjxoSiJAS",
+    "role": "admin",
+    "createdAt": "2025-07-20T07:56:02.624Z"
+  }
+]
